@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Blocos de Monstros</title>
+  <link rel="shortcut icon" href="Image/Logo/favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="Aparencia.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-900 text-white p-6">
+  <h1 class="text-3xl font-bold mb-6 text-center">Blocos de Personagem</h1>
+<div class="buttons mb-6 text-center space-x-4">
+    <a class="button-link" href="index.html">Gerar NPC</a>
+    <a class="button-link" href="Escudo.html">Escudo de Mestre</a>
+    <a class="button-link" href="Monstros.html">Monstros</a>
+    <a class="button-link" href="eventos.html">Eventos Aleatórios</a>
+     <a class="button-link" href="iniciativa.html">Iniciativa de RPG</a>
+
+  <div id="blocos" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+    <!-- Blocos gerados via JS -->
+  </div>
+
+  <script>
+    const numBlocos = 6;
+
+    function criarBloco(index) {
+      return `
+      <div class="bg-gray-800 rounded-2xl shadow-lg p-4 space-y-3">
+        <div class="flex flex-col space-y-2">
+          <label class="text-sm">Nome</label>
+          <input type="text" id="nome-${index}" class="rounded p-2 bg-gray-700 text-white" />
+        </div>
+        <div class="flex gap-4">
+          <div class="flex flex-col w-1/2">
+            <label class="text-sm">Vida</label>
+            <input type="text" id="vida-${index}" class="rounded p-2 bg-gray-700 text-white" />
+          </div>
+          <div class="flex flex-col w-1/2">
+            <label class="text-sm">CA</label>
+            <input type="text" id="ca-${index}" class="rounded p-2 bg-gray-700 text-white" />
+          </div>
+        </div>
+        <div class="flex flex-col">
+          <label class="text-sm">Anotações</label>
+          <textarea id="anotacoes-${index}" rows="4" class="rounded p-2 bg-gray-700 text-white"></textarea>
+        </div>
+      </div>`;
+    }
+
+    // Gera os blocos
+    const container = document.getElementById('blocos');
+    for (let i = 0; i < numBlocos; i++) {
+      container.innerHTML += criarBloco(i);
+    }
+
+    // Função para salvar no localStorage ao digitar
+    function salvarDados(index) {
+      localStorage.setItem(`bloco-${index}-nome`, document.getElementById(`nome-${index}`).value);
+      localStorage.setItem(`bloco-${index}-vida`, document.getElementById(`vida-${index}`).value);
+      localStorage.setItem(`bloco-${index}-ca`, document.getElementById(`ca-${index}`).value);
+      localStorage.setItem(`bloco-${index}-anotacoes`, document.getElementById(`anotacoes-${index}`).value);
+    }
+
+    // Carrega dados ao iniciar e adiciona listeners
+    for (let i = 0; i < numBlocos; i++) {
+      document.getElementById(`nome-${i}`).value = localStorage.getItem(`bloco-${i}-nome`) || '';
+      document.getElementById(`vida-${i}`).value = localStorage.getItem(`bloco-${i}-vida`) || '';
+      document.getElementById(`ca-${i}`).value = localStorage.getItem(`bloco-${i}-ca`) || '';
+      document.getElementById(`anotacoes-${i}`).value = localStorage.getItem(`bloco-${i}-anotacoes`) || '';
+
+      document.getElementById(`nome-${i}`).addEventListener('input', () => salvarDados(i));
+      document.getElementById(`vida-${i}`).addEventListener('input', () => salvarDados(i));
+      document.getElementById(`ca-${i}`).addEventListener('input', () => salvarDados(i));
+      document.getElementById(`anotacoes-${i}`).addEventListener('input', () => salvarDados(i));
+    }
+  </script>
+</body>
+</html>
+e54

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gerador de NPC</title>
+  <link rel="stylesheet" href="Aparencia.css">
+  <link rel="shortcut icon" href="Image/Logo/favicon.ico" type="image/x-icon">
+</head>
+<body>
+  <div class="container">
+    <h1>Gerador de NPC</h1>
+    <div class="buttons">
+      <button onclick="gerarNPC()">Gerar NPC</button>
+      <a class="button-link" href="Escudo.html">Escudo de Mestre</a>
+       <a class="button-link" href="Monstros.html">Monstros</a>
+       <a class="button-link" href="eventos.html">Eventos Aleatórios</a>
+        <a class="button-link" href="iniciativa.html">Iniciativa de RPG</a>
+    </div>
+    <div class="npc" id="npc"></div>
+  </div>
+
+  <script>
+    const nomesMasculinos = ["Aeron", "Baldric", "Cedric", "Darian", "Eldrin", "Faelan", "Garrick", "Hadrian", "Icarus", "Jareth", "Kael", "Lucan", "Merek", "Nerys", "Orrin", "Perrin", "Quillon", "Roderic", "Sylas", "Theron", "Ulric", "Varek", "Wulfric", "Xavian", "Yorick", "Zarek", "Leoric", "Magnus", "Drystan", "Thorne"];
+    const nomesFemininos = ["Aelene", "Brienne", "Celeste", "Daphne", "Elira", "Fiora", "Gwen", "Helena", "Isolde", "Jasna", "Keira", "Liora", "Mira", "Nyssa", "Odessa", "Petra", "Quinara", "Rowena", "Selene", "Thalia", "Ulira", "Vanya", "Wynne", "Xanthe", "Yseult", "Zinnia", "Lyra", "Maris", "Dahlia", "Talia"];
+    const racas = ["Humano", "Elfo", "Orc", "Fauno", "Anão", "Vampiro", "Goblin", "Onis", "Fada", "Tiefling", "Mestiço", "Construto", "Tritão", "Rediit", "Xaoc", "Meio-Monstro", "Titan", "Voxai", "Homúnculo", "Cielos", "Pequenino"];
+    const ocupacoes = ["Ferreiro", "Caçador", "Mago Errante", "Mercador", "Bardo", "Assassino", "Curandeiro", "Cavaleiro", "Patrulheiro", "Alquimista", "Grimório Vivo", "Camponês Místico", "Ladrão", "Guardião das Ruínas", "Navegador de Tempestades", "Sacerdote do Fogo", "Criador de Golems", "Monge da Névoa", "Arqueiro Sombrio", "Domador de Feras"];
+
+    function gerarNPC() {
+      const sexo = Math.random() > 0.5 ? "Masculino" : "Feminino";
+      const nome = sexo === "Masculino" ? nomesMasculinos[Math.floor(Math.random() * nomesMasculinos.length)] : nomesFemininos[Math.floor(Math.random() * nomesFemininos.length)];
+      const idade = Math.floor(Math.random() * 60) + 16;
+      const racaSelecionada = racas[Math.floor(Math.random() * racas.length)];
+      const ocupacao = ocupacoes[Math.floor(Math.random() * ocupacoes.length)];
+
+      let raca = racaSelecionada;
+      if (raca === "Mestiço") {
+        const r1 = racas[Math.floor(Math.random() * racas.length)];
+        let r2 = racas[Math.floor(Math.random() * racas.length)];
+        while (r2 === r1 || r2 === "Mestiço") r2 = racas[Math.floor(Math.random() * racas.length)];
+        raca = `${r1}/${r2}`;
+      }
+
+      const historia = `Este personagem é um(a) ${ocupacao.toLowerCase()} que viveu tempos difíceis em ${raca.toLowerCase()}. Desde pequeno(a), aprendeu a sobreviver com astúcia e determinação. Seu passado é marcado por perdas, mas também por coragem e superação. Hoje, busca seu lugar no mundo, guiado pelos ecos de sua história.`;
+
+      const vida = Math.floor(Math.random() * 50) + 50;
+      const mana = Math.floor(Math.random() * 50) + 30;
+      const nivel = Math.floor(Math.random() * 10) + 1;
+      const armadura = Math.floor(Math.random() * 14) + 11;
+
+      const atributos = ['Força', 'Destreza', 'Constituição', 'Inteligência', 'Vontade', 'Carisma'];
+      let atributosGerados = "";
+      atributos.forEach(attr => {
+        const valor = Math.floor(Math.random() * 13) - 2; // -2 a +10
+        atributosGerados += `<div class='npc-field'><span class='label'>${attr}:</span> ${valor}</div>`;
+      });
+
+      const html = `
+        <div class='npc-field'><span class='label'>Nome:</span> ${nome}</div>
+        <div class='npc-field'><span class='label'>Idade:</span> ${idade}</div>
+        <div class='npc-field'><span class='label'>Sexo:</span> ${sexo}</div>
+        <div class='npc-field'><span class='label'>Raça:</span> ${raca}</div>
+        <div class='npc-field'><span class='label'>Ocupação:</span> ${ocupacao}</div>
+        <div class='npc-field'><span class='label'>História:</span> ${historia}</div>
+        <div class='npc-field'><span class='label'>Vida:</span> <input type='number' value='${vida}'></div>
+        <div class='npc-field'><span class='label'>Mana:</span> <input type='number' value='${mana}'></div>
+        <div class='npc-field'><span class='label'>Nível:</span> ${nivel}</div>
+        <div class='npc-field'><span class='label'>Classe de Armadura:</span> ${armadura}</div>
+        <h3>Atributos:</h3>
+        ${atributosGerados}
+      `;
+
+      document.getElementById("npc").innerHTML = html;
+    }
+  </script>
+</body>
+</html>

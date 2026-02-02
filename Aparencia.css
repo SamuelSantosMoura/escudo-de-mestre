@@ -1,0 +1,102 @@
+body {
+      font-family: Arial, sans-serif;
+      font-size: 20px;
+      background-color: #1c1c1c;
+      color: #fff;
+      padding: 30px;
+    }
+    .container {
+      max-width: 1100px;
+      margin: auto;
+      background: #2e2e2e;
+      border-radius: 10px;
+      padding: 40px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.5);
+    }
+    h1, h2, h3 {
+      text-align: center;
+      margin-bottom: 20px;
+      color:#fff ;
+    }
+    .section {
+      margin-bottom: 50px;
+    }
+    .box {
+      background-color: #3a3a3a;
+      border-radius: 8px;
+      padding: 20px;
+      margin-bottom: 30px;
+      border-left: 8px solid #6c0efb;
+    }
+    .box h3 {
+      margin-top: 0;
+      color: #ffffff;
+      font-size: 22px;
+    }
+    .box p, .box ul, .box pre {
+      line-height: 1.8;
+      white-space: pre-wrap;
+    }
+    .box ul {
+      padding-left: 20px;
+    }
+    .buttons {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+    .buttons button, .buttons .button-link {
+      background-color: #6c0efb;
+      border: none;
+      color: white;
+      padding: 12px 20px;
+      margin: 10px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 18px;
+      text-decoration: none;
+      display: inline-block;
+    }
+    .buttons button:hover, .buttons .button-link:hover {
+      background-color: #6c0efb;
+    }
+    #goria{
+
+      background-color: #6c0efb;
+      border: none;
+      color: white;
+      border-radius: 6px;
+      cursor: pointer;
+      cursor: pointer;
+      margin: 5px;
+      text-align: center;
+      display: block;
+        margin: 0 auto;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+      margin: 5px;
+    }
+    #evento {
+      margin-top: 30px;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgb(65, 63, 63);
+    }
+    #novo-evento {
+      width: 80%;
+      padding: 10px;
+      font-size: 16px;
+      margin-top: 20px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      display: block;
+        margin: 0 auto;
+    }
+    select {
+      padding: 10px;
+      font-size: 16px;
+      margin-top: 10px;
+    }
+    

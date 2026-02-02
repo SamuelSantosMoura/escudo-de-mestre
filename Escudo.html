@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Ferramentas do Mestre - Dandora</title>
+  <link rel="stylesheet" href="Aparencia.css">
+  <link rel="shortcut icon" href="Image/Logo/favicon.ico" type="image/x-icon">
+  <script>
+    function gerarNPC() {
+      const nomes = ["Thalor", "Mirien", "Kael", "Vendra", "Orrin", "Sylma"];
+      const classes = ["Guerreiro", "Mago", "Ladino", "Clérigo", "Caçador", "Bardo"];
+      const personalidade = ["Sério", "Alegre", "Sarcástico", "Calmo", "Agressivo", "Curioso"];
+
+      const nome = nomes[Math.floor(Math.random() * nomes.length)];
+      const classe = classes[Math.floor(Math.random() * classes.length)];
+      const perso = personalidade[Math.floor(Math.random() * personalidade.length)];
+
+      const npcDiv = document.getElementById("npc");
+      npcDiv.innerHTML = `
+        <div class="box">
+          <h3>NPC Gerado</h3>
+          <p><strong>Nome:</strong> ${nome}</p>
+          <p><strong>Classe:</strong> ${classe}</p>
+          <p><strong>Personalidade:</strong> ${perso}</p>
+        </div>
+      `;
+    }
+  </script>
+</head>
+<body>
+  <div class="container">
+    <h1>📘 Escudo do Mestre - Dandora</h1>
+
+   <div class="buttons mb-6 text-center space-x-4">
+    <a class="button-link" href="index.html">Gerar NPC</a>
+    <a class="button-link" href="Monstros.html">Monstros</a>
+    <a class="button-link" href="eventos.html">Eventos Aleatórios</a>
+    <a class="button-link" href="iniciativa.html">Iniciativa de RPG</a>
+</div>
+
+
+    <div class="npc" id="npc"></div>
+
+    <div class="section">
+      <div class="box">
+        <h3>🎯 Dificuldade</h3>
+        <pre>
+Tarefa              DT    Exemplo
+Fácil               5     Escutar uma conversa atrás da porta (Percepção)
+Média              10     Subir um barranco (Atletismo)
+Muito difícil      20     Estancar um Sangramento fatal (Medicina)
+Quase Impossível   30     Convencer alguém que não gosta de você a lutar para protegê-lo (Diplomacia)
+        </pre>
+      </div>
+
+      <div class="box">
+        <h3>⚔️ Reações</h3>
+        <p><strong>Contra-Ataque:</strong><br>
+        Condição: Um inimigo precisa errar um ataque corpo a corpo em você.<br>
+        Efeito: O personagem faz um ataque corpo a corpo contra o atacante. Se o contra-ataque for bem-sucedido, ele causa 50% do dano normal.</p>
+
+        <p><strong>Bloqueio:</strong><br>
+        Condição: Usar escudo ou arma em mãos.<br>
+        Efeito: Reduz o dano do ataque em um valor igual bônus do escudo + metade da sua CA + Força ou Constituição. Se não estiver usando um escudo não some o bônus do escudo.</p>
+
+        <p><strong>Esquiva:</strong><br>
+        Condição: Estar consciente e livre.<br>
+        Efeito: Teste de Destreza contra o ataque. Se vencer, evita o dano. Se empatar, reduz pela metade.</p>
+
+        <p><strong>Ataque de Oportunidade:</strong><br>
+        Condição: Inimigo se afasta ou se expõe.<br>
+        Efeito: Ataque com -2 no teste. Causa 100% do dano normal, sem qualquer modificação adicional de bônus ou penalidade.</p>
+
+        <p><strong>Passo Acelerado:</strong><br>
+        Teste de Atletismo (DT 15) para dobrar o deslocamento. Se falhar, anda metade.</p>
+      </div>
+
+      <div class="box">
+        <h3>🎲 Vantagem & Desvantagem</h3>
+        <p><strong>Vantagem:</strong> +1 dado (máx. 5d20), usa o maior.<br>
+        <strong>Desvantagem:</strong> Usa o menor valor entre os dados rolados.</p>
+      </div>
+
+      <div class="box">
+        <h3>🧠 Pontos de Loucura (PL)</h3>
+        <p>Ganhos por falhas em testes de Vontade em eventos traumáticos.</p>
+        <pre>
+PL Total   Efeito
+1–3        Loucura curta
+4–6        Loucura temporária
+7–10       Permanente (moderada)
+11+        Permanente (grave)
+        </pre>
+      </div>
+
+      <div class="box">
+        <h3>💤 Descanso e Recuperação</h3>
+        <p><strong>Descanso Curto:</strong><br>
+        • PV: 1d4 + Con<br>
+        • PA: Recupera 2d8 + o modificador de Vontade (Von) do personagem</p>
+        <p><strong>Descanso Longo:</strong><br>
+        • Recupera tudo de PV<br>
+        • PA: Recupera metade dos pontos de ação gastados (arredondado para baixo).</p>
+      </div>
+
+      <div class="box">
+        <h3>☠️ Dano por Queda</h3>
+        <pre>
+Altura     Dano
+2m         1d4
+4m         1d6
+6m         1d8
+8m         1d10
+10m        1d12
+12m        3d6
+14m        2d20
+16m+       7d20
+        </pre>
+      </div>
+
+      <div class="box">
+        <h3>🧛‍♂️ Transformação Vampírica</h3>
+        <p>Se não beber sangue em 5 turnos/20 minutos, o personagem se transforma em um <strong>Vampa</strong>, perdendo a inteligência e tornando-se um monstro.</p>
+      </div>
+
+      <div class="box">
+        <h3>🌟 Inspiração (1d10 após a morte de um aliado)</h3>
+        <pre>
+1: Determinação Inquebrantável – Resistência 10 contra controle.
+2: Força do Ódio – +2 For e 1 ação padrão extra.
+3: Vingança Sombria – +3 Destreza e ataques ignoram resistência.
+4: Chamas da Vingança – +5 ataque contra o inimigo que matou o aliado.
+5: Ecos da Morte – Inimigos -3 em ataque e resistência (10m).
+6: Mente em Luto – Resistência mental 10.
+7: Resoluto – Recupera 4d8+4 PV e 4d6 PM/PA.
+8: Renascimento Espiritual – +3 Destreza e +3m deslocamento.
+9: Loucura Selvagem – Ganha 2 PL, +4 em dano, ignora armadura.
+10: Espírito de Sacrifício – Um aliado pode agir imediatamente com +3 em todos os testes até o final do turno.
+        </pre>
+      </div>
+      <div class="box">
+        <h3>Status</h3>
+        <pre>
+<b>Em Chamas</b>
+<p>O personagem está pegando fogo. Sofre 1d6 de dano de fogo no início de cada rodada. O personagem (ou um aliado adjacente) deve gastar uma Ação Padrão para apagar as chamas (rolar no chão, usar um manto, água, etc.).</p>
+
+<b>Envenenado</b>
+<p>Toxinas correm pelas veias do personagem. Sofre 1d4 de dano de veneno a cada rodada. Além disso, o personagem sofre Desvantagem em ataques e testes de perícia enquanto o veneno persistir (devido à náusea e dor). Uso de um item Antídoto, magia de cura de venenos ou passar em um Teste de Constituição (DT variável) após 1 minuto.
+</p>
+<b>Sangrando</b>
+<p>Um ferimento aberto que não para de jorrar. Sofre 1d4 de dano no início de cada turno. O dano é cumulativo se sofrer múltiplos sangramentos (ex: 2d4, 3d4). Qualquer cura mágica estanca o sangramento, ou um teste de Medicina/Primeiros Socorros (DT 15) como ação padrão.</p>
+
+<b>Dormindo/Inconsciente</b>
+<p>O personagem larga tudo o que está segurando e cai no chão (Caído). Falha automaticamente em testes de Força e Destreza. Ataques contra ele a curta distância são Críticos Automáticos. Acorda se sofrer dano ou se alguém gastar uma ação para sacudi-lo.</p>
+
+<b>Morrendo</b>
+<p>O limiar entre a vida e a morte. Ao chegar a 0 Pontos de Vida, o personagem cai inconsciente. No início de cada turno dele, deve fazer um Teste de Constituição (DT 10 ou 15).
+
+<b>Sucesso:</b> Permanece vivo por mais uma rodada (não recupera vida, apenas não morre).
+
+<b>Falha:</b> O personagem morre definitivamente.</p>
+
+<b>Exaustão</b>
+<p>O desgaste físico e mental acumulado:
+
+<b>Nível 1:</b> Desvantagem em testes de habilidade/perícia.
+
+<b>Nível 2:</b> Deslocamento reduzido pela metade.
+
+<b>Nível 3:</b> Desvantagem em rolagens de ataque e testes de resistência.
+
+<b>Nível 4:</b> Pontos de Vida Máximos reduzidos pela metade.
+
+<b>Nível 5:</b> Deslocamento reduzido a 0.
+
+<b>Nível 6:</b> Morte por colapso total.
+
+<b>Recuperação:</b> Descanso Longo reduz 1 nível de exaustão.</p>
+
+<b>Confuso</b>
+<p>A mente do alvo não consegue processar a realidade. No início do turno, role 1d6:
+
+<b>1:</b> Move-se em direção aleatória (role 1d4 para direção).
+
+<b>2-3:</b> Fica parado balbuciando (perde o turno, mas pode reagir).
+
+<b>4-5:</b> Ataca a criatura mais próxima (amigo ou inimigo) ou a si mesmo se estiver sozinho.
+
+<b>6:</b> A condição termina e o personagem age normalmente.</p>
+
+<b>Amedrontado</b>
+<p>O terror domina a mente. Desvantagem em ataques e testes. O personagem não pode se mover voluntariamente para perto da fonte do medo. Se estiver concentrando magia, deve passar em Vontade (DT 12-15) ou perde a magia. Teste de Vontade ao inicio de cada turno para encerrar o efeito.</p>
+
+<b>Cego</b>
+<p>Incapacidade de enxergar. Falha automática em testes que dependam da visão. -6 em testes de Destreza e Força. Ataques contra o personagem cego têm Vantagem. Os ataques do personagem cego têm Desvantagem (ou falham se ele não souber onde o alvo está).</p>
+
+<b>Surdo</b>
+<p>Incapacidade de ouvir. Falha automática em testes de escuta. -10 em Percepção. Magias tem Desvantagem ao lançar magias com componentes verbais.</p>
+
+<b>Fraco</b>
+<p>A força vital foi drenada. O personagem perde quaisquer bônus de péricia em rolagens (Arma Branca, Arcanista, etc.) e a Classe de Dificuldade (DT) dos seus testes aumenta em +2 ou +5.</p>
+
+<b>Vulnerável</b>
+<p>O personagem sofre o dobro do dano de uma fonte específica (ou de todas, se especificado).</p>
+
+<b>Petrificado</b>
+<p>Transformado em pedra ou material sólido. O personagem fica Imóvel e Inconsciente. Ele para de envelhecer e não precisa respirar. Ele ganha Resistência a todos os danos (pedra é dura), mas falha automaticamente em testes de Destreza e Força. O peso do personagem aumenta 10x.</p>
+
+<b>Atordoado</b>
+<p>Um golpe forte na cabeça ou choque mental. O personagem não pode realizar ações ou reações, mal consegue se mover e fala de forma arrastada. Falha automaticamente em testes de Força e Destreza. Ataques contra ele têm Vantagem.</p>
+
+<b>Paralisado</b>
+<p>Similar a petrificado, mas por magia ou veneno (os músculos travam). O personagem não pode se mover ou falar. Ataques contra ele têm Vantagem. Qualquer ataque físico que atinja um alvo paralisado a menos de 1,5m é um Crítico Automático.</p>
+
+<b>Agarrado/Imobilizado</b>
+<p>Segurado por uma criatura, corrente ou visco. O deslocamento do personagem se torna 0. Ele não recebe bônus de Destreza na CA. Para escapar, deve gastar uma ação para fazer um teste de Atletismo ou Acrobacia.</p>
+
+<b>Invisível</b>
+<p>O personagem não pode ser visto, apenas ouvido ou farejado. O personagem tem Vantagem em ataques que realizar. Ataques contra o personagem invisível têm Desvantagem. Ele não pode ser alvo de magias que exijam “ver o alvo”.</p>
+
+<b>Enfeitiçado</b>
+<p>O personagem vê o conjurador como um amigo próximo. O personagem não pode atacar o conjurador ou alvejá-lo com habilidades nocivas. O conjurador tem Vantagem em testes sociais contra o enfeitiçado. O efeito acaba se o conjurador atacar o personagem.</p>
+
+<b>Silenciado</b>
+<p>O personagem não pode falar. Ele é incapaz de conjurar magias e falha automaticamente em testes de furtividade que exijam silêncio absoluto (passos não fazem som, mas armadura sim). Imune a dano sônico.</p>
+
+<b>Caído</b>
+<p>O personagem está deitado no chão. Ele só pode se mover rastejando (metade do deslocamento). Ataques corpo a corpo contra ele têm Vantagem, mas ataques à distância contra ele têm Desvantagem. Levantar-se gasta metade do movimento.</p>
+        </pre>
+      </div>
+    </div>
+    <div class="box">
+
+    <h3>Pontos de Destino</h3>
+
+<b>Como Gastar (1 Ponto):</b>
+
+<p><b>Alterar a Cena:</b> Adiciona um elemento narrativo ou vantagem ao cenário (com aprovação do Mestre).</p>
+
+<p><b>Re-rolar (Você):</b> Refaz um teste falho seu (o segundo resultado é definitivo).</p>
+
+<p><b>Re-rolar (Mestre):</b> Obriga o Mestre a refazer um teste contra você ou o grupo.</p>
+
+<p><b>Intervenção Dramática: (Apenas 1x por sessão)</b> Muda drasticamente o rumo da história para evitar desastres ou revelar segredos (exige negociação).</p>
+
+<h3>Regras Gerais:</h3>
+
+<p><b>Limite:</b> Máximo de 3 pontos acumulados por personagem (excedente é perdido).</p>
+
+<p><b>Validade:</b> Pontos não expiram, mas podem ser zerados pelo Mestre ao fim de um arco.</p>
+
+<p><b>Foco:</b> Ferramenta para criar narrativa e cenas memoráveis, não apenas mecânica.</p>
+
+  </div>
+  </div>
+  
+</body>
+</html>
